@@ -14,7 +14,7 @@ export default function Header() {
       <div className="con px-5 flex h-[90px]">
         <div className="top-bar__left">
           <div className="logo-box h-full">
-            <Link href="#" className="logo flex h-full items-center gap-x-1">
+            <Link href="/" className="logo flex h-full items-center gap-x-1">
               <Image src={logo} alt="로고" width={45} height={45} />
               <span
                 className={`logo-text text-[20px] font-bold ${jalnan.className}`}
