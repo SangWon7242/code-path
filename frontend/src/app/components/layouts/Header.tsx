@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/images/logo.png";
 import localFont from "next/font/local";
+import logo from "@/assets/images/logo.png";
 
 const jalnan = localFont({
-  src: "../../assets/fonts/Jalnan2/Jalnan2TTF.ttf",
+  src: "../../../assets/fonts/Jalnan2TTF.ttf",
   display: "swap",
 });
 

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-
+import localFont from "next/font/local";
 import "./globals.css";
+
+const gmarketSans = localFont({
+  src: "../assets/fonts/GmarketSansTTFMedium.ttf",
+  display: "swap",
+  variable: "--font-gmarket-sans",
+});
 
 export const metadata: Metadata = {
   title: "Code Path",
@@ -14,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="antialiased">{children}</body>
+      <body className={`antialiased ${gmarketSans.className}`}>{children}</body>
     </html>
   );
 }
