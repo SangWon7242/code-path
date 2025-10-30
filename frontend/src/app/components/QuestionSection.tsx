@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface Question {
   id: number;
@@ -14,12 +14,7 @@ interface ScaleButtonProps {
   color: "green" | "purple" | "gray";
 }
 
-const ScaleButton: React.FC<ScaleButtonProps> = ({
-  selected,
-  onClick,
-  size,
-  color,
-}) => {
+function ScaleButton({ selected, onClick, size, color }: ScaleButtonProps) {
   const sizeClasses = {
     large: "w-16 h-16",
     medium: "w-12 h-12",
@@ -52,14 +47,14 @@ const ScaleButton: React.FC<ScaleButtonProps> = ({
       `}
     />
   );
-};
+}
 
 interface ScaleRowProps {
   value: number | null;
   onChange: (value: number) => void;
 }
 
-const ScaleRow: React.FC<ScaleRowProps> = ({ value, onChange }) => {
+function ScaleRow({ value, onChange }: ScaleRowProps) {
   const scales = [
     { value: 1, size: "large" as const, color: "green" as const },
     { value: 2, size: "medium" as const, color: "green" as const },
@@ -87,7 +82,7 @@ const ScaleRow: React.FC<ScaleRowProps> = ({ value, onChange }) => {
       <span className="text-sm text-gray-500 ml-4">그렇지 않다</span>
     </div>
   );
-};
+}
 
 interface QuestionItemProps {
   question: Question;
@@ -95,11 +90,7 @@ interface QuestionItemProps {
   onChange: (value: number) => void;
 }
 
-const QuestionItem: React.FC<QuestionItemProps> = ({
-  question,
-  value,
-  onChange,
-}) => {
+function QuestionItem({ question, value, onChange }: QuestionItemProps) {
   return (
     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
       <p className="text-gray-700 text-center mb-6 leading-relaxed">
@@ -108,7 +99,7 @@ const QuestionItem: React.FC<QuestionItemProps> = ({
       <ScaleRow value={value} onChange={onChange} />
     </div>
   );
-};
+}
 
 export default function QuestionSection() {
   const questions: Question[] = [
