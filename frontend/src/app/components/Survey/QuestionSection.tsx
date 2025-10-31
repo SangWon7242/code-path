@@ -17,20 +17,26 @@ export default function QuestionSection() {
   const [showResult, setShowResult] = useState(false);
   const questionsRef = useRef<HTMLDivElement>(null);
   const questionRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const progressRef = useRef<HTMLDivElement>(null);
 
-  const scrollToTop = () => {
-    if (questionsRef.current) {
-      questionsRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+  const scrollToFirstQuestion = () => {
+    // 전체 진행률 표시 부분으로 스크롤 (100px 위로)
+    if (progressRef.current) {
+      setTimeout(() => {
+        progressRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        // 100px 위로 추가 스크롤
+        setTimeout(() => {
+          window.scrollBy({
+            top: -200,
+            behavior: "smooth",
+          });
+        }, 100);
+      }, 100);
     }
   };
-
-  // 페이지가 변경될 때마다 자동으로 스크롤
-  useEffect(() => {
-    scrollToTop();
-  }, [currentPage]);
 
   const handleAnswer = (questionId: number, value: number) => {
     setAnswers((prev) => ({
@@ -99,6 +105,11 @@ export default function QuestionSection() {
 
   const pageQuestions = getCurrentPageQuestions();
 
+  // 페이지가 변경될 때마다 첫 번째 질문으로 스크롤
+  useEffect(() => {
+    scrollToFirstQuestion();
+  }, [currentPage]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-6 sm:py-8 md:py-12 px-3 sm:px-4">
       <div className="max-w-4xl mx-auto">
@@ -116,13 +127,15 @@ export default function QuestionSection() {
         <SurveyBanner />
 
         {/* 진행률 표시 */}
-        <SurveyProgress
-          currentPage={currentPage}
-          totalPages={TOTAL_PAGES}
-          totalAnswered={totalAnswered}
-          totalQuestions={questions.length}
-          progressPercentage={progressPercentage}
-        />
+        <div ref={progressRef}>
+          <SurveyProgress
+            currentPage={currentPage}
+            totalPages={TOTAL_PAGES}
+            totalAnswered={totalAnswered}
+            totalQuestions={questions.length}
+            progressPercentage={progressPercentage}
+          />
+        </div>
 
         {/* 질문 목록 */}
         <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
