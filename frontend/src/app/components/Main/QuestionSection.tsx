@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   questions,
   QUESTIONS_PER_PAGE,
@@ -134,6 +134,11 @@ export default function QuestionSection() {
     }
   };
 
+  // 페이지가 변경될 때마다 자동으로 스크롤
+  useEffect(() => {
+    scrollToTop();
+  }, [currentPage]);
+
   const handleAnswer = (questionId: number, value: number) => {
     setAnswers((prev) => ({
       ...prev,
@@ -153,29 +158,25 @@ export default function QuestionSection() {
   };
 
   const handleNext = () => {
-    if (currentPage < TOTAL_PAGES - 1) {
-      setCurrentPage((prev) => prev + 1);
-      scrollToTop();
+    if (currentPage < TOTAL_PAGES - 1 && isCurrentPageComplete()) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentPage > 0) {
       setCurrentPage((prev) => prev - 1);
-      scrollToTop();
     }
   };
 
   const handleShowResult = () => {
     setShowResult(true);
-    scrollToTop();
   };
 
   const handleRestart = () => {
     setAnswers({});
     setCurrentPage(0);
     setShowResult(false);
-    scrollToTop();
   };
 
   const totalAnswered = Object.keys(answers).length;
@@ -194,7 +195,7 @@ export default function QuestionSection() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
-        <div className="text-center mb-8">
+        <div ref={questionsRef} className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             웹 개발 진로 탐색 설문조사
           </h1>
@@ -226,7 +227,7 @@ export default function QuestionSection() {
         </div>
 
         {/* 질문 목록 */}
-        <div ref={questionsRef} className="space-y-4 mb-8">
+        <div className="space-y-4 mb-8">
           {pageQuestions.map((question, index) => (
             <QuestionItem
               key={question.id}
@@ -264,7 +265,6 @@ export default function QuestionSection() {
                 key={index}
                 onClick={() => {
                   setCurrentPage(index);
-                  scrollToTop();
                 }}
                 className={`
                   w-3 h-3 rounded-full transition-all
