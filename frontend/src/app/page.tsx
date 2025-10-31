@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="pt-[90px]">
         <QuestionSection />
       </main>
     </>
