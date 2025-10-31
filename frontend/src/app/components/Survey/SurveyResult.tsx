@@ -41,8 +41,9 @@ export default function SurveyResult({
         0
       );
       const avgScore = totalScore / questionIds.length;
-      // 점수 반전 (높을수록 적합하도록)
-      scores[category as keyof typeof scores] = 8 - avgScore;
+      // 점수 반전 후 지수 함수로 차이를 극대화 (높을수록 적합하도록)
+      const reversedScore = 8 - avgScore;
+      scores[category as keyof typeof scores] = Math.exp(reversedScore * 0.8);
     });
 
     const maxScore = Math.max(...Object.values(scores));
