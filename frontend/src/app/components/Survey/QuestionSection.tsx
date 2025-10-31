@@ -16,6 +16,7 @@ export default function QuestionSection() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResult, setShowResult] = useState(false);
   const questionsRef = useRef<HTMLDivElement>(null);
+  const questionRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   const scrollToTop = () => {
     if (questionsRef.current) {
@@ -36,6 +37,21 @@ export default function QuestionSection() {
       ...prev,
       [questionId]: value,
     }));
+
+    // 다음 질문으로 자동 스크롤
+    const pageQuestions = getCurrentPageQuestions();
+    const currentIndex = pageQuestions.findIndex((q) => q.id === questionId);
+    const nextQuestion = pageQuestions[currentIndex + 1];
+
+    if (nextQuestion && questionRefs.current[nextQuestion.id]) {
+      // 짧은 딜레이 후 스크롤 (애니메이션이 자연스럽게 보이도록)
+      setTimeout(() => {
+        questionRefs.current[nextQuestion.id]?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 100);
+    }
   };
 
   const getCurrentPageQuestions = () => {
@@ -113,6 +129,9 @@ export default function QuestionSection() {
           {pageQuestions.map((question, index) => (
             <QuestionItem
               key={question.id}
+              ref={(el) => {
+                questionRefs.current[question.id] = el;
+              }}
               questionId={question.id}
               questionText={question.text}
               questionNumber={currentPage * QUESTIONS_PER_PAGE + index + 1}
