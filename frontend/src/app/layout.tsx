@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description:
     "퍼블리셔, 프론트엔드, 백엔드 중 당신에게 맞는 웹 개발 진로를 찾아보세요!",
 
+  metadataBase: new URL("https://codepath.blap.kr"),
+
   // Open Graph (카카오톡, 페이스북 등)
   openGraph: {
     title: "Code Path - 웹 개발 적성 테스트",
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Code Path",
     images: [
       {
-        url: "https://codepath.blap.kr/thumbnail.png", // 썸네일 이미지 URL (1200x630 권장)
+        url: "/thumbnail.png", // 썸네일 이미지 URL (1200x630 권장)
         width: 1200,
         height: 630,
         alt: "Code Path 웹 개발 적성 테스트",
