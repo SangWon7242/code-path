@@ -129,7 +129,7 @@ export default function QuestionSection() {
             onClick={handlePrevious}
             disabled={currentPage === 0}
             className={`
-              px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
+              px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-xs sm:text-sm md:text-base whitespace-nowrap
               ${
                 currentPage === 0
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -167,7 +167,7 @@ export default function QuestionSection() {
               onClick={handleShowResult}
               disabled={!allQuestionsAnswered}
               className={`
-                px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
+                px-2 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-[10px] sm:text-sm md:text-base whitespace-nowrap
                 ${
                   allQuestionsAnswered
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg"
@@ -182,7 +182,7 @@ export default function QuestionSection() {
               onClick={handleNext}
               disabled={!isCurrentPageComplete()}
               className={`
-                px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
+                px-2 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-[10px] sm:text-sm md:text-base whitespace-nowrap
                 ${
                   isCurrentPageComplete()
                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg"
