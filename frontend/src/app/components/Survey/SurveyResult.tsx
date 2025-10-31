@@ -46,7 +46,6 @@ export default function SurveyResult({
       scores[category as keyof typeof scores] = Math.exp(reversedScore * 0.8);
     });
 
-    const maxScore = Math.max(...Object.values(scores));
     const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
 
     return [
