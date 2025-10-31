@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import thumbnail from "@/assets/images/thumbnail.png";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Code Path",
     images: [
       {
-        url: thumbnail.src, // 썸네일 이미지 URL (1200x630 권장)
+        url: "https://codepath.blap.kr/thumbnail.png", // 썸네일 이미지 URL (1200x630 권장)
         width: 1200,
         height: 630,
         alt: "Code Path 웹 개발 적성 테스트",

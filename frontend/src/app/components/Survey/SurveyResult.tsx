@@ -34,16 +34,15 @@ export default function SurveyResult({
       backend: 0,
     };
 
-    // 점수 계산 (낮을수록 적합: 1=매우 그렇다, 7=그렇지 않다)
+    // 점수 계산 (높을수록 적합: 7=매우 그렇다, 1=그렇지 않다)
     Object.entries(categoryMapping).forEach(([category, questionIds]) => {
       const totalScore = questionIds.reduce(
         (sum, id) => sum + (answers[id] || 4),
         0
       );
       const avgScore = totalScore / questionIds.length;
-      // 점수 반전 후 지수 함수로 차이를 극대화 (높을수록 적합하도록)
-      const reversedScore = 8 - avgScore;
-      scores[category as keyof typeof scores] = Math.exp(reversedScore * 0.8);
+      // 지수 함수로 차이를 극대화 (높을수록 적합하도록)
+      scores[category as keyof typeof scores] = Math.exp(avgScore * 0.8);
     });
 
     const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
