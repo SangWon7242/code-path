@@ -17,11 +17,11 @@ export default function ScaleRow({ value, onChange }: ScaleRowProps) {
   ];
 
   return (
-    <div className="flex items-center justify-between max-w-2xl mx-auto px-4">
-      <span className="text-sm text-gray-500 mr-4 whitespace-nowrap">
+    <div className="flex items-center justify-between max-w-2xl mx-auto px-1 sm:px-2 md:px-4">
+      <span className="text-[10px] sm:text-xs md:text-sm text-gray-500 mr-1 sm:mr-2 md:mr-4 whitespace-nowrap">
         그렇다
       </span>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
         {scales.map((scale) => (
           <ScaleButton
             key={scale.value}
@@ -32,7 +32,7 @@ export default function ScaleRow({ value, onChange }: ScaleRowProps) {
           />
         ))}
       </div>
-      <span className="text-sm text-gray-500 ml-4 whitespace-nowrap">
+      <span className="text-[10px] sm:text-xs md:text-sm text-gray-500 ml-1 sm:ml-2 md:ml-4 whitespace-nowrap">
         그렇지 않다
       </span>
     </div>

@@ -1,10 +1,10 @@
 export default function SurveyBanner() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
       {/* 1단계 */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border-t-4 border-blue-500">
+      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border-t-4 border-blue-500">
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 mb-4 flex items-center justify-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mb-3 sm:mb-4 flex items-center justify-center">
             <svg
               className="w-full h-full text-blue-500"
               fill="none"
@@ -19,20 +19,22 @@ export default function SurveyBanner() {
               />
             </svg>
           </div>
-          <span className="inline-block bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+          <span className="inline-block bg-blue-500 text-white text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3">
             1단계
           </span>
-          <h3 className="text-lg font-bold text-gray-800 mb-2">테스트 완료</h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1.5 sm:mb-2">
+            테스트 완료
+          </h3>
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
             여러분의 웹 개발 적성을 확인할 수 있도록 솔직하게 답변해 주세요.
           </p>
         </div>
       </div>
 
       {/* 2단계 */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border-t-4 border-green-500">
+      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border-t-4 border-green-500">
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 mb-4 flex items-center justify-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mb-3 sm:mb-4 flex items-center justify-center">
             <svg
               className="w-full h-full text-green-500"
               fill="none"
@@ -47,13 +49,13 @@ export default function SurveyBanner() {
               />
             </svg>
           </div>
-          <span className="inline-block bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+          <span className="inline-block bg-green-500 text-white text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3">
             2단계
           </span>
-          <h3 className="text-lg font-bold text-gray-800 mb-2">
+          <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1.5 sm:mb-2">
             상세 결과 보기
           </h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
             여러분의 적성이 웹 개발의 다양한 분야에 어떻게 적용되는지
             알아보세요.
           </p>
@@ -61,9 +63,9 @@ export default function SurveyBanner() {
       </div>
 
       {/* 3단계 */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border-t-4 border-purple-500">
+      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border-t-4 border-purple-500">
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 mb-4 flex items-center justify-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mb-3 sm:mb-4 flex items-center justify-center">
             <svg
               className="w-full h-full text-purple-500"
               fill="none"
@@ -78,13 +80,13 @@ export default function SurveyBanner() {
               />
             </svg>
           </div>
-          <span className="inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+          <span className="inline-block bg-purple-500 text-white text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3">
             3단계
           </span>
-          <h3 className="text-lg font-bold text-gray-800 mb-2">
+          <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1.5 sm:mb-2">
             커리어 로드맵 확인
           </h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
             맞춤형 학습 경로를 통해 원하는 웹 개발자로 성장하세요.
           </p>
         </div>

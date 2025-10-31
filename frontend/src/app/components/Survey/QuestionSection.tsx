@@ -84,14 +84,16 @@ export default function QuestionSection() {
   const pageQuestions = getCurrentPageQuestions();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-6 sm:py-8 md:py-12 px-3 sm:px-4">
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
-        <div ref={questionsRef} className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+        <div ref={questionsRef} className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2">
             웹 개발 적성 테스트
           </h1>
-          <p className="text-gray-600">총 50문항 / 페이지당 5문항</p>
+          <p className="text-sm sm:text-base text-gray-600">
+            총 50문항 / 페이지당 5문항
+          </p>
         </div>
 
         {/* 3단계 안내 배너 */}
@@ -107,7 +109,7 @@ export default function QuestionSection() {
         />
 
         {/* 질문 목록 */}
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
           {pageQuestions.map((question, index) => (
             <QuestionItem
               key={question.id}
@@ -121,13 +123,13 @@ export default function QuestionSection() {
         </div>
 
         {/* 페이지 네비게이션 */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* 이전 버튼 */}
           <button
             onClick={handlePrevious}
             disabled={currentPage === 0}
             className={`
-              px-6 py-3 rounded-lg font-semibold transition-all
+              px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
               ${
                 currentPage === 0
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -139,7 +141,7 @@ export default function QuestionSection() {
           </button>
 
           {/* 페이지 인디케이터 */}
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2">
             {Array.from({ length: TOTAL_PAGES }).map((_, index) => (
               <button
                 key={index}
@@ -147,10 +149,10 @@ export default function QuestionSection() {
                   setCurrentPage(index);
                 }}
                 className={`
-                  w-3 h-3 rounded-full transition-all
+                  w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all
                   ${
                     index === currentPage
-                      ? "bg-blue-600 w-8"
+                      ? "bg-blue-600 w-6 sm:w-8"
                       : "bg-gray-300 hover:bg-gray-400"
                   }
                 `}
@@ -165,7 +167,7 @@ export default function QuestionSection() {
               onClick={handleShowResult}
               disabled={!allQuestionsAnswered}
               className={`
-                px-6 py-3 rounded-lg font-semibold transition-all
+                px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
                 ${
                   allQuestionsAnswered
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg"
@@ -180,7 +182,7 @@ export default function QuestionSection() {
               onClick={handleNext}
               disabled={!isCurrentPageComplete()}
               className={`
-                px-6 py-3 rounded-lg font-semibold transition-all
+                px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base
                 ${
                   isCurrentPageComplete()
                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg"
@@ -195,8 +197,8 @@ export default function QuestionSection() {
 
         {/* 안내 메시지 */}
         {!isCurrentPageComplete() && (
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
+          <div className="mt-4 sm:mt-6 text-center">
+            <p className="text-xs sm:text-sm text-gray-500">
               💡 현재 페이지의 모든 질문에 답변해야 다음으로 넘어갈 수 있습니다
             </p>
           </div>

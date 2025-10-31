@@ -12,9 +12,9 @@ export default function ScaleButton({
   color,
 }: ScaleButtonProps) {
   const sizeClasses = {
-    large: "w-16 h-16",
-    medium: "w-12 h-12",
-    small: "w-10 h-10",
+    large: "w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16",
+    medium: "w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12",
+    small: "w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10",
   };
 
   const colorClasses = {
@@ -30,7 +30,7 @@ export default function ScaleButton({
         ${sizeClasses[size]}
         ${colorClasses[color]}
         rounded-full
-        border-4
+        border-2 sm:border-3 md:border-4
         transition-all
         duration-200
         hover:scale-110
