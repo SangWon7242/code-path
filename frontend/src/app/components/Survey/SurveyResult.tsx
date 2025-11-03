@@ -152,10 +152,14 @@ export default function SurveyResult({
         {/* 각 진로별 상세 정보 */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           {results.map((career) => (
-            <Link href={`/careers/${career.slug}`} key={career.name}>
-              <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-blue-300 transition-all cursor-pointer">
-                <h4 className="font-bold text-lg text-gray-800 mb-2">
-                  {career.name}
+            <Link
+              key={career.name}
+              href={`/career/${career.slug}`}
+              className="block"
+            >
+              <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-blue-400 hover:shadow-xl transition-all cursor-pointer group">
+                <h4 className="font-bold text-lg text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                  {career.name} →
                 </h4>
                 <p className="text-sm text-gray-600 mb-4">
                   {career.description}
