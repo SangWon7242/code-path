@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 
 interface SurveyResultProps {
   answers: Record<number, number>;
@@ -21,6 +22,11 @@ export default function SurveyResult({
   answers,
   onRestart,
 }: SurveyResultProps) {
+  // 결과 페이지 진입 시 최상단으로 스크롤
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   const calculateScores = (): CareerScore[] => {
     const categoryMapping = {
       publisher: [

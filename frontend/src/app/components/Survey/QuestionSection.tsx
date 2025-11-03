@@ -18,6 +18,7 @@ export default function QuestionSection() {
   const questionsRef = useRef<HTMLDivElement>(null);
   const questionRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const progressRef = useRef<HTMLDivElement>(null);
+  const isRestartingRef = useRef(false); // 재시작 추적용 ref
 
   const scrollToFirstQuestion = () => {
     // 전체 진행률 표시 부분으로 스크롤 (반응형 오프셋)
@@ -105,6 +106,7 @@ export default function QuestionSection() {
   };
 
   const handleRestart = () => {
+    isRestartingRef.current = true; // 재시작 플래그 설정
     setAnswers({});
     setCurrentPage(0);
     setShowResult(false);
@@ -130,6 +132,17 @@ export default function QuestionSection() {
   useEffect(() => {
     scrollToFirstQuestion();
   }, [currentPage]);
+
+  // 재시작 시에만 최상단으로 스크롤
+  useEffect(() => {
+    if (isRestartingRef.current && !showResult) {
+      // 약간의 딜레이를 주어 렌더링 완료 후 스크롤
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        isRestartingRef.current = false; // 플래그 리셋
+      }, 100);
+    }
+  }, [showResult]);
 
   // 결과 화면 표시
   if (showResult) {
