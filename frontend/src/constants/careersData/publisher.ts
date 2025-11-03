@@ -13,18 +13,13 @@ export const CAREER_PUBLISHER_DATA = {
     {
       phase: "1단계",
       title: "기초 웹 기술",
-      duration: "2-3개월",
-      topics: [
-        "HTML5 기본 문법",
-        "CSS3 스타일링",
-        "반응형 디자인 기초",
-        "Git 버전 관리",
-      ],
+      duration: "1개월",
+      topics: ["HTML5 기본 문법", "CSS3 스타일링", "반응형 디자인 기초"],
     },
     {
       phase: "2단계",
       title: "고급 스타일링",
-      duration: "2-3개월",
+      duration: "1개월",
       topics: [
         "CSS 애니메이션",
         "Flexbox & Grid",
@@ -34,20 +29,21 @@ export const CAREER_PUBLISHER_DATA = {
     },
     {
       phase: "3단계",
-      title: "실무 도구",
-      duration: "2개월",
-      topics: [
-        "웹 접근성 (WCAG)",
-        "SEO 최적화",
-        "성능 최적화",
-        "빌드 도구 (Webpack)",
-      ],
+      title: "자바스크립트&제이쿼리(인터랙티브 웹)",
+      duration: "1개월",
+      topics: ["자바스크립트", "제이쿼리", "인터랙티브 웹"],
     },
     {
       phase: "4단계",
       title: "프로젝트 실전",
-      duration: "지속적",
-      topics: ["포트폴리오 제작", "실전 프로젝트", "유지보수", "협업 경험"],
+      duration: "2개월",
+      topics: [
+        "포트폴리오 제작",
+        "실전 프로젝트",
+        "유지보수",
+        "협업 경험",
+        "GIT 버전 관리",
+      ],
     },
   ],
   careerPath: [
