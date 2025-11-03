@@ -1,91 +1,26 @@
 "use client";
 
-import Link from "next/link";
+import ReTestButton from "@/app/components/common/buttons/reTestButton";
+import { CAREER_PUBLISHER_DATA } from "@/constants/careersData/publisher";
+import GoBackButton from "@/app/components/common/buttons/GoBackButton";
 
 export default function PublisherPage() {
-  const career = {
-    name: "웹 퍼블리셔",
-    description: "HTML, CSS를 활용해 디자인을 코드로 구현하는 전문가",
-    icon: "🎨",
-    characteristics: [
-      "디자인을 정확하게 코드로 구현",
-      "다양한 브라우저와 디바이스 대응",
-      "웹 접근성과 표준 준수",
-      "디자이너와의 원활한 협업",
-      "세밀한 UI/UX 구현 능력",
-    ],
-    curriculum: [
-      {
-        phase: "1단계",
-        title: "기초 웹 기술",
-        duration: "2-3개월",
-        topics: [
-          "HTML5 기본 문법",
-          "CSS3 스타일링",
-          "반응형 디자인 기초",
-          "Git 버전 관리",
-        ],
-      },
-      {
-        phase: "2단계",
-        title: "고급 스타일링",
-        duration: "2-3개월",
-        topics: [
-          "CSS 애니메이션",
-          "Flexbox & Grid",
-          "Sass/SCSS",
-          "크로스 브라우징",
-        ],
-      },
-      {
-        phase: "3단계",
-        title: "실무 도구",
-        duration: "2개월",
-        topics: [
-          "웹 접근성 (WCAG)",
-          "SEO 최적화",
-          "성능 최적화",
-          "빌드 도구 (Webpack)",
-        ],
-      },
-      {
-        phase: "4단계",
-        title: "프로젝트 실전",
-        duration: "지속적",
-        topics: ["포트폴리오 제작", "실전 프로젝트", "유지보수", "협업 경험"],
-      },
-    ],
-    careerPath: [
-      "주니어 퍼블리셔",
-      "시니어 퍼블리셔",
-      "프론트엔드 개발자",
-      "UI 개발 리드",
-    ],
-    salary: {
-      junior: "2,500만원 ~ 3,500만원",
-      mid: "3,500만원 ~ 5,000만원",
-      senior: "5,000만원 ~ 7,000만원+",
-    },
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* 헤더 */}
         <div className="mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4"
-          >
-            ← 돌아가기
-          </Link>
+          <GoBackButton />
+
           <div className="flex items-center gap-4 mb-4">
-            <span className="text-6xl">{career.icon}</span>
+            <span className="text-6xl">{CAREER_PUBLISHER_DATA.icon}</span>
             <div>
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                {career.name}
+                {CAREER_PUBLISHER_DATA.name}
               </h1>
-              <p className="text-lg text-gray-600">{career.description}</p>
+              <p className="text-lg text-gray-600">
+                {CAREER_PUBLISHER_DATA.description}
+              </p>
             </div>
           </div>
         </div>
@@ -96,7 +31,7 @@ export default function PublisherPage() {
             💡 주요 특징
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
-            {career.characteristics.map((char, index) => (
+            {CAREER_PUBLISHER_DATA.characteristics.map((char, index) => (
               <div
                 key={index}
                 className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg"
@@ -119,7 +54,7 @@ export default function PublisherPage() {
 
             {/* 커리큘럼 단계 */}
             <div className="space-y-8">
-              {career.curriculum.map((phase, index) => (
+              {CAREER_PUBLISHER_DATA.curriculum.map((phase, index) => (
                 <div key={index} className="relative pl-0 md:pl-20">
                   {/* 단계 아이콘 */}
                   <div className="absolute left-4 top-0 w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg hidden md:flex">
@@ -164,7 +99,7 @@ export default function PublisherPage() {
               🚀 커리어 패스
             </h2>
             <div className="space-y-4">
-              {career.careerPath.map((path, index) => (
+              {CAREER_PUBLISHER_DATA.careerPath.map((path, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {index + 1}
@@ -175,7 +110,9 @@ export default function PublisherPage() {
                         className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
                         style={{
                           width: `${
-                            ((index + 1) / career.careerPath.length) * 100
+                            ((index + 1) /
+                              CAREER_PUBLISHER_DATA.careerPath.length) *
+                            100
                           }%`,
                         }}
                       />
@@ -196,19 +133,19 @@ export default function PublisherPage() {
               <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
                 <div className="text-sm text-gray-600 mb-1">주니어 (0-3년)</div>
                 <div className="text-lg font-bold text-gray-800">
-                  {career.salary.junior}
+                  {CAREER_PUBLISHER_DATA.salary.junior}
                 </div>
               </div>
               <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                 <div className="text-sm text-gray-600 mb-1">미드 (3-7년)</div>
                 <div className="text-lg font-bold text-gray-800">
-                  {career.salary.mid}
+                  {CAREER_PUBLISHER_DATA.salary.mid}
                 </div>
               </div>
               <div className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
                 <div className="text-sm text-gray-600 mb-1">시니어 (7년+)</div>
                 <div className="text-lg font-bold text-gray-800">
-                  {career.salary.senior}
+                  {CAREER_PUBLISHER_DATA.salary.senior}
                 </div>
               </div>
             </div>
@@ -217,12 +154,7 @@ export default function PublisherPage() {
 
         {/* CTA 버튼 */}
         <div className="mt-8 text-center">
-          <Link
-            href="/"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg hover:shadow-xl transition-all"
-          >
-            다시 테스트하기
-          </Link>
+          <ReTestButton />
         </div>
       </div>
     </div>
