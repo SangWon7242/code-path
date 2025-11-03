@@ -20,20 +20,37 @@ export default function QuestionSection() {
   const progressRef = useRef<HTMLDivElement>(null);
 
   const scrollToFirstQuestion = () => {
-    // 전체 진행률 표시 부분으로 스크롤 (100px 위로)
+    // 전체 진행률 표시 부분으로 스크롤 (반응형 오프셋)
     if (progressRef.current) {
       setTimeout(() => {
-        progressRef.current?.scrollIntoView({
+        // 화면 크기에 따른 동적 오프셋 계산
+        const screenWidth = window.innerWidth;
+        let offset = 0;
+
+        if (screenWidth < 640) {
+          // 모바일: 80px
+          offset = 80;
+        } else if (screenWidth < 768) {
+          // 작은 태블릿: 90px
+          offset = 90;
+        } else if (screenWidth < 1024) {
+          // 태블릿: 120px
+          offset = 120;
+        } else {
+          // PC: 200px
+          offset = 200;
+        }
+
+        // 요소의 정확한 위치 계산
+        const elementPosition =
+          progressRef.current!.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        // 계산된 위치로 한 번에 스크롤
+        window.scrollTo({
+          top: offsetPosition,
           behavior: "smooth",
-          block: "start",
         });
-        // 100px 위로 추가 스크롤
-        setTimeout(() => {
-          window.scrollBy({
-            top: -200,
-            behavior: "smooth",
-          });
-        }, 100);
       }, 100);
     }
   };
@@ -98,17 +115,17 @@ export default function QuestionSection() {
   const isLastPage = currentPage === TOTAL_PAGES - 1;
   const allQuestionsAnswered = totalAnswered === questions.length;
 
+  // 페이지가 변경될 때마다 첫 번째 질문으로 스크롤
+  useEffect(() => {
+    scrollToFirstQuestion();
+  }, [currentPage]);
+
   // 결과 화면 표시
   if (showResult) {
     return <SurveyResult answers={answers} onRestart={handleRestart} />;
   }
 
   const pageQuestions = getCurrentPageQuestions();
-
-  // 페이지가 변경될 때마다 첫 번째 질문으로 스크롤
-  useEffect(() => {
-    scrollToFirstQuestion();
-  }, [currentPage]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-6 sm:py-8 md:py-12 px-3 sm:px-4">
