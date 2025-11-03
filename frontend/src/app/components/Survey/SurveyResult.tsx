@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+
 interface SurveyResultProps {
   answers: Record<number, number>;
   onRestart: () => void;
@@ -10,6 +14,7 @@ interface CareerScore {
   color: string;
   description: string;
   skills: string[];
+  slug: string;
 }
 
 export default function SurveyResult({
@@ -55,6 +60,7 @@ export default function SurveyResult({
         color: "bg-blue-500",
         description: "HTML, CSS를 활용해 디자인을 코드로 구현하는 전문가",
         skills: ["HTML/CSS", "반응형 디자인", "웹 접근성", "크로스 브라우징"],
+        slug: "publisher",
       },
       {
         name: "프론트엔드 개발자",
@@ -68,6 +74,7 @@ export default function SurveyResult({
           "상태관리",
           "UX/UI 구현",
         ],
+        slug: "frontend",
       },
       {
         name: "백엔드 개발자",
@@ -76,6 +83,7 @@ export default function SurveyResult({
         color: "bg-purple-500",
         description: "서버, 데이터베이스, API를 구축하는 개발자",
         skills: ["서버 언어", "데이터베이스", "API 설계", "클라우드/인프라"],
+        slug: "backend",
       },
     ].sort((a, b) => b.score - a.score);
   };
@@ -144,30 +152,31 @@ export default function SurveyResult({
         {/* 각 진로별 상세 정보 */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           {results.map((career) => (
-            <div
-              key={career.name}
-              className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-blue-300 transition-all"
-            >
-              <h4 className="font-bold text-lg text-gray-800 mb-2">
-                {career.name}
-              </h4>
-              <p className="text-sm text-gray-600 mb-4">{career.description}</p>
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-gray-500 uppercase">
-                  주요 기술
+            <Link href={`/careers/${career.slug}`} key={career.name}>
+              <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-blue-300 transition-all cursor-pointer">
+                <h4 className="font-bold text-lg text-gray-800 mb-2">
+                  {career.name}
+                </h4>
+                <p className="text-sm text-gray-600 mb-4">
+                  {career.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {career.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-gray-500 uppercase">
+                    주요 기술
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {career.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
