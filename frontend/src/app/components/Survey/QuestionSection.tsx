@@ -110,6 +110,17 @@ export default function QuestionSection() {
     setShowResult(false);
   };
 
+  // 개발 모드: 모든 질문에 랜덤 답변 자동 입력
+  const handleAutoFill = () => {
+    const newAnswers: Record<number, number> = {};
+    questions.forEach((question) => {
+      // 1~7 사이의 랜덤 값
+      newAnswers[question.id] = Math.floor(Math.random() * 7) + 1;
+    });
+    setAnswers(newAnswers);
+    setCurrentPage(TOTAL_PAGES - 1); // 마지막 페이지로 이동
+  };
+
   const totalAnswered = Object.keys(answers).length;
   const progressPercentage = (totalAnswered / questions.length) * 100;
   const isLastPage = currentPage === TOTAL_PAGES - 1;
@@ -138,6 +149,23 @@ export default function QuestionSection() {
           <p className="text-sm sm:text-base text-gray-600">
             총 50문항 / 페이지당 5문항
           </p>
+          {/* 개발 모드 전용 버튼 */}
+          {process.env.NODE_ENV === "development" && (
+            <div className="mt-4 flex gap-2 justify-center">
+              <button
+                onClick={handleAutoFill}
+                className="px-4 py-2 bg-yellow-500 text-white rounded-lg text-sm font-semibold hover:bg-yellow-600 transition-all shadow-md"
+              >
+                🚀 자동 완성 (개발용)
+              </button>
+              <button
+                onClick={handleRestart}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg text-sm font-semibold hover:bg-gray-600 transition-all shadow-md"
+              >
+                🔄 초기화
+              </button>
+            </div>
+          )}
         </div>
 
         {/* 3단계 안내 배너 */}
@@ -190,7 +218,7 @@ export default function QuestionSection() {
           </button>
 
           {/* 페이지 인디케이터 */}
-          <div className="flex gap-1.5 sm:gap-2">
+          {/* <div className="flex gap-1.5 sm:gap-2">
             {Array.from({ length: TOTAL_PAGES }).map((_, index) => (
               <button
                 key={index}
@@ -208,7 +236,7 @@ export default function QuestionSection() {
                 aria-label={`페이지 ${index + 1}로 이동`}
               />
             ))}
-          </div>
+          </div> */}
 
           {/* 다음 또는 결과 버튼 */}
           {isLastPage ? (
@@ -231,7 +259,8 @@ export default function QuestionSection() {
               onClick={handleNext}
               disabled={!isCurrentPageComplete()}
               className={`
-                px-2 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-[10px] sm:text-sm md:text-base whitespace-nowrap
+                
+                px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all text-xs sm:text-sm md:text-base whitespace-nowrap
                 ${
                   isCurrentPageComplete()
                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg"
@@ -248,7 +277,9 @@ export default function QuestionSection() {
         {!isCurrentPageComplete() && (
           <div className="mt-4 sm:mt-6 text-center">
             <p className="text-xs sm:text-sm text-gray-500">
-              💡 현재 페이지의 모든 질문에 답변해야 다음으로 넘어갈 수 있습니다
+              💡 현재 페이지의 모든 질문에 답변해야
+              <br className="sm:hidden" />
+              다음 페이지로 넘어갈 수 있습니다.
             </p>
           </div>
         )}
